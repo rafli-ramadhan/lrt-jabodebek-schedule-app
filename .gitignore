@@ -1,0 +1,60 @@
+# Flutter/Dart
+**/build/
+**/ios/Flutter/.last_build_id
+**/ios/Pods/
+**/ios/Runner.xcworkspace/
+**/ios/Runner.xcworkspace/xcuserdata/
+**/ios/Flutter/App.framework
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/Flutter.podspec
+**/pubspec.lock
+
+# Flutter artifacts
+*.log
+*.class
+*.hprof
+*.apk
+*.aab
+
+# Android Studio
+.idea/
+*.iml
+
+# macOS
+*.DS_Store
+
+# Xcode
+*.xcodeproj/
+*.xcworkspace/
+*.xcuserstate
+*.xcuserdata/
+*.xcuserdatad/
+*.hmap
+*.ipa
+
+# Generated files
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Visual Studio Code
+.vscode/
+.history/
+
+# Web
+web/.dart_tool/
+web/build/
+
+# Flutter web build output
+web/index.html
+web/main.dart.js
+
+# Other
+*.swp
+*.swo
+*.tmp
+*.temp
+*.orig
+*.un~*
+*.bak
