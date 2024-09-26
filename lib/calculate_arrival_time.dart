@@ -1,6 +1,6 @@
-import 'package:app_lrt_jabodebek/model/dukuhAtas.dart';
-import 'package:app_lrt_jabodebek/model/jatiMulya.dart';
-import 'package:app_lrt_jabodebek/model/harjaMukti.dart';
+import 'package:app_lrt_jabodebek/data/dukuhAtas.dart';
+import 'package:app_lrt_jabodebek/data/jatiMulya.dart';
+import 'package:app_lrt_jabodebek/data/harjaMukti.dart';
 
 class DataStasiun {
   String namaStasiun;

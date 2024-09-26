@@ -1,66 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:app_lrt_jabodebek/calculate_arrival_time.dart';
 import 'package:app_lrt_jabodebek/model/data.dart';
-
-List<String> stasiunList = [
-  'Dukuh Atas',
-  'Setiabudi',
-  'Rasuna Said',
-  'Kuningan',
-  'Pancoran',
-  'Ciliwung',
-  'Cawang',
-  'Halim',
-  'Harjamukti',
-  'Ciracas',
-  'Kampung Rambutan',
-  'TMII',
-  'Jatibening Baru',
-  'Cikunir 1',
-  'Cikunir 2',
-  'Bekasi Barat',
-  'Jatimulya'
-];
-
-List<String> jamOptions = [
-  '05:00',
-  '05:30',
-  '06:00',
-  '06:30',
-  '07:00',
-  '07:30',
-  '08:00',
-  '08:30',
-  '09:00',
-  '09:30',
-  '10:00',
-  '10:30',
-  '11:00',
-  '11:30',
-  '12:00',
-  '12:30',
-  '13:00',
-  '13:30',
-  '14:00',
-  '14:30',
-  '15:00',
-  '15:30',
-  '16:00',
-  '16:30',
-  '17:00',
-  '17:30',
-  '18:00',
-  '18:30',
-  '19:00',
-  '19:30',
-  '20:00',
-  '20:30',
-  '21:00',
-  '21:30',
-  '22:00',
-  '22:30',
-];
-
+import 'package:app_lrt_jabodebek/data/jamOption.dart';
+import 'package:app_lrt_jabodebek/data/stationList.dart';
+import 'package:app_lrt_jabodebek/list_train.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -379,17 +322,27 @@ class _MainScreenState extends State<MainScreen> {
                   Container(
                     margin: const EdgeInsets.only(
                         top: 20.0, left: 10.0, right: 10.0, bottom: 4.0),
-                    child: Text('Estimasti waktu tiba di stasiun $selectedStation',
+                    child: Text(
+                        'Estimasti waktu tiba di stasiun $selectedStation',
                         style: const TextStyle(
                             color: Color.fromARGB(255, 0, 0, 0),
                             fontSize: 14.0,
                             fontFamily: 'PoppinsMedium')),
                   ),
-                  Expanded(child: ListView.builder(
+                  Expanded(
+                      child: ListView.builder(
                     itemCount: getDataLRT.length,
                     itemBuilder: (context, index) {
                       final DataLRT item = getDataLRT[index];
                       return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    ListTrain(stationName: selectedStation)),
+                          );
+                        },
                         child: Card(
                           shadowColor: const Color.fromARGB(255, 0, 0, 0),
                           child: Row(
