@@ -3,14 +3,20 @@ import 'package:app_lrt_jabodebek/data/stationList.dart';
 
 class ListTrain extends StatelessWidget {
   final String stationName;
+  final String lineLrt;
+  List<String> stations;
 
-  const ListTrain({Key? key, required this.stationName}) : super(key: key);
+  ListTrain({Key? key, required this.stationName, required this.lineLrt})
+      : stations = lineLrt.contains('Cibubur')
+            ? stasiunListCibuburLine
+            : stasiunListBekasiLine,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('LRT Stations',
+        title: const Text('Stasiun LRT',
             style: TextStyle(
                 color: Color.fromARGB(255, 0, 0, 0),
                 fontSize: 20.0,
@@ -19,16 +25,15 @@ class ListTrain extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 5.0),
         child: ListView.builder(
-          itemCount: stasiunList.length,
+          itemCount: stations.length,
           itemBuilder: (context, index) {
-            bool isSelected = stasiunList[index] == stationName;
+            bool isSelected = stations[index] == stationName;
             return Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Column(
                   children: [
-                    // This creates a circle (dot) for each station
                     Container(
                       width: 10,
                       height: 10,
@@ -38,7 +43,7 @@ class ListTrain extends StatelessWidget {
                       ),
                     ),
 
-                    if (index != stasiunList.length - 1)
+                    if (index != stations.length - 1)
                       Container(
                         width: 2,
                         height: 40,
@@ -59,8 +64,8 @@ class ListTrain extends StatelessWidget {
                   ),
                   child: Text(
                       isSelected
-                          ? '${stasiunList[index]} (posisi kamu)'
-                          : stasiunList[index],
+                          ? '${stations[index]} (posisi kamu)'
+                          : stations[index],
                       style: TextStyle(
                           color: isSelected
                               ? Color.fromARGB(255, 255, 255, 255)

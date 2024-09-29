@@ -4,6 +4,7 @@ import 'package:app_lrt_jabodebek/model/data.dart';
 import 'package:app_lrt_jabodebek/data/jamOption.dart';
 import 'package:app_lrt_jabodebek/data/stationList.dart';
 import 'package:app_lrt_jabodebek/list_train.dart';
+import 'dart:async';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -12,45 +13,11 @@ class MainScreen extends StatefulWidget {
   _MainScreenState createState() => _MainScreenState();
 }
 
-// class SplashScreen extends StatefulWidget {
-//   @override
-//   _SplashScreenState createState() => _SplashScreenState();
-// }
-
-// class _SplashScreenState extends State<SplashScreen> {
-//   @override
-//   void initState() {
-//     super.initState();
-//     // Delay for 3 seconds and navigate to the main screen
-//     Timer(Duration(seconds: 3), () {
-//       Navigator.of(context).pushReplacement(
-//         MaterialPageRoute(builder: (context) => MainScreen()),
-//       );
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Colors.black, // Set background color to black
-//       body: Center(
-//         child: Text(
-//           'LRT Jabodebek',
-//           style: TextStyle(
-//             fontSize: 25.0,
-//             color: Colors.white, // Set text color to white
-//             fontFamily: 'PoppinsRegular', // Use Poppins font
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
 class _MainScreenState extends State<MainScreen> {
+  // Default value
   String selectedStation = 'Dukuh Atas';
-  String selectedDariJam = '06:00'; // Default value for jam tiba
-  String selectedSampaiJam = '08:00'; // Default value for jam berangkat
+  String selectedDariJam = '05:00';
+  String selectedSampaiJam = '22:30';
 
   @override
   Widget build(BuildContext context) {
@@ -69,31 +36,27 @@ class _MainScreenState extends State<MainScreen> {
                   margin: const EdgeInsets.symmetric(
                       horizontal: 2.0, vertical: 2.0),
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 8.0,
-                      vertical: 8.0), // Add padding inside the container
+                      horizontal: 8.0, vertical: 8.0),
                   decoration: BoxDecoration(
-                    color: const Color.fromARGB(
-                        255, 255, 220, 220), // Set the background color
-                    borderRadius:
-                        BorderRadius.circular(25.0), // Add rounded border
+                    color: const Color.fromARGB(255, 255, 220, 220),
+                    borderRadius: BorderRadius.circular(25.0),
                   ),
                   child: const Center(
                     child: Icon(
                       Icons.directions_subway,
                       size: 17,
-                      color: Colors.black, // Set icon color to black
+                      color: Colors.black,
                     ),
                   ),
                 ),
               ),
               const SizedBox(width: 2),
-              Text(
-                // '${stationData[0]} Station',
+              const Text(
                 'LRT Jabodebek',
-                style: const TextStyle(
+                style: TextStyle(
                   color: Color.fromARGB(255, 255, 255, 255),
                   fontSize: 17.0,
-                  fontFamily: 'PoppinsMedium', // Use the PoppinsBold font
+                  fontFamily: 'PoppinsMedium',
                 ),
               ),
             ],
@@ -114,7 +77,7 @@ class _MainScreenState extends State<MainScreen> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        // Dropdown for Jam Tiba
+                        // Dropdown
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -205,8 +168,7 @@ class _MainScreenState extends State<MainScreen> {
                                                           jamOptions[index + 1];
                                                     }
                                                   });
-                                                  Navigator.pop(
-                                                      context); // Close the dialog
+                                                  Navigator.pop(context);
                                                 },
                                               );
                                             },
@@ -237,8 +199,7 @@ class _MainScreenState extends State<MainScreen> {
                             ],
                           ),
                         ),
-                        const SizedBox(width: 20), // Space between the columns
-                        // Dropdown for Jam Berangkat
+                        const SizedBox(width: 20),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -284,8 +245,7 @@ class _MainScreenState extends State<MainScreen> {
                                                           jamOptions[index];
                                                     }
                                                   });
-                                                  Navigator.pop(
-                                                      context); // Close the dialog
+                                                  Navigator.pop(context);
                                                 },
                                               );
                                             },
@@ -340,17 +300,15 @@ class _MainScreenState extends State<MainScreen> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    ListTrain(stationName: selectedStation)),
+                                    ListTrain(stationName: selectedStation, lineLrt: item.lineLrt)),
                           );
                         },
                         child: Card(
                           shadowColor: const Color.fromARGB(255, 0, 0, 0),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment
-                                .spaceBetween, // Allow column to take minimum space
-                            crossAxisAlignment: CrossAxisAlignment
-                                .center, // To make all container in center
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               Padding(
                                 padding: const EdgeInsets.all(5.0),
@@ -358,14 +316,11 @@ class _MainScreenState extends State<MainScreen> {
                                     margin: const EdgeInsets.symmetric(
                                         horizontal: 2.0, vertical: 2.0),
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 8.0,
-                                        vertical:
-                                            8.0), // Add padding inside the container
+                                        horizontal: 8.0, vertical: 8.0),
                                     decoration: BoxDecoration(
-                                      color: const Color.fromARGB(255, 255, 255,
-                                          255), // Set the background color to black
-                                      borderRadius: BorderRadius.circular(
-                                          25.0), // Add rounded border
+                                      color: const Color.fromARGB(
+                                          255, 255, 255, 255),
+                                      borderRadius: BorderRadius.circular(25.0),
                                     ),
                                     child: const Center(
                                       child: Icon(
@@ -391,25 +346,22 @@ class _MainScreenState extends State<MainScreen> {
                                     ),
                                     Container(
                                       padding: const EdgeInsets.symmetric(
-                                          horizontal: 8.0,
-                                          vertical:
-                                              2.0), // Add padding inside the container
+                                          horizontal: 8.0, vertical: 2.0),
                                       decoration: BoxDecoration(
                                         color: item.lineLrt.contains('Bekasi')
-                                            ? const Color.fromARGB(255, 16, 1,
-                                                182) // Blue if 'Bekasi'
-                                            : const Color.fromARGB(255, 1, 135,
-                                                52), // Black for other cases // Set the background color to black
-                                        borderRadius: BorderRadius.circular(
-                                            8.0), // Add rounded border
+                                            ? const Color.fromARGB(
+                                                255, 16, 1, 182)
+                                            : const Color.fromARGB(
+                                                255, 1, 135, 52),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
                                       ),
                                       child: Text(
                                         item.lineLrt,
                                         style: const TextStyle(
                                           fontFamily: 'PoppinsRegular',
                                           fontSize: 13.0,
-                                          color: Colors
-                                              .white, // Set text color to white
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ),
@@ -428,8 +380,7 @@ class _MainScreenState extends State<MainScreen> {
                                           style: TextStyle(
                                             fontFamily: 'PoppinsRegular',
                                             fontSize: 16.0,
-                                            color: Color.fromARGB(255, 0, 0,
-                                                0), // Set text color to white
+                                            color: Color.fromARGB(255, 0, 0, 0),
                                           ),
                                         ),
                                         Container(
@@ -437,24 +388,19 @@ class _MainScreenState extends State<MainScreen> {
                                               horizontal: 1.0,
                                               vertical: 5.0), //
                                           padding: const EdgeInsets.symmetric(
-                                              horizontal: 8.0,
-                                              vertical:
-                                                  1.0), // Add padding inside the container
+                                              horizontal: 8.0, vertical: 1.0),
                                           decoration: BoxDecoration(
                                             color: const Color.fromARGB(
                                                 255, 139, 1, 1),
-
-                                            /// Set the background color to black
-                                            borderRadius: BorderRadius.circular(
-                                                8.0), // Add rounded border
+                                            borderRadius:
+                                                BorderRadius.circular(8.0),
                                           ),
                                           child: Text(
                                             item.jamTiba,
                                             style: const TextStyle(
                                               fontFamily: 'PoppinsRegular',
                                               fontSize: 18.0,
-                                              color: Colors
-                                                  .white, // Set text color to white
+                                              color: Colors.white,
                                             ),
                                           ),
                                         ),

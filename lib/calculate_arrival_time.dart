@@ -11,7 +11,6 @@ class DataStasiun {
       required this.dataStasiun,});
 }
 
-// List stasiun di sepanjang jalur LRT
 List<DataStasiun> stasiunDataList = [
 // Bekasi line only
   DataStasiun(namaStasiun: 'Jatimulya', dataStasiun: dataJatiMulya),
